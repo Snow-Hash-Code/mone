@@ -10,6 +10,7 @@ use App\Models\Post;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\Profile;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +34,9 @@ class DatabaseSeeder extends Seeder
     
             // Crear categorías
             Category::factory(5)->create();
+
+            // Crear profile
+            Category::facotry(10)->create();
     
             // Crear publicaciones y asociar comentarios
            /* Post::factory(5)->create();
@@ -46,6 +50,9 @@ class DatabaseSeeder extends Seeder
                     'commentable_type' => Post::class,
                 ]);
             });
+            
         }
+
+        
     
 }
