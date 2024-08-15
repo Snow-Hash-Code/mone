@@ -1,0 +1,91 @@
+models:
+  # ...
+
+  Article:
+    title: string
+    slug: string unique
+    content: longtext
+    category_id: id
+    user_id: id
+
+  Post:
+    title: string
+    message: string
+    slug: string unique
+    user_id: id
+    category_id: id
+
+  Video:
+    title: string
+    description: string
+    slug: string unique
+    user_id: id
+    category_id: id
+
+  Category:
+    name: string
+    slug: string unique
+    relationships:
+      hasMany: Post
+      HasMany: Video
+
+  Profile:
+    instagram: string
+    github: string
+    web: string
+    slug: string unique
+    hobbies: String
+    description: String
+    user_id: id
+    relationships:
+      hasOne: Location
+
+  Location:
+    address: string
+    coordinates: string
+    profile_id: id
+    relationships:
+      belongsTo: Profile
+
+  Country:
+    name: string
+    slug: string unique
+    relationships:
+      hasMany: State
+
+  State:
+    name: string
+    slug: string unique
+    country_id: id
+    relationships:
+      belongsTo: Country
+      hasMany: City
+
+  City:
+    name: string
+    slug: string unique
+    state_id: id
+    relationships:
+      belongsTo: State
+      hasMany: User
+
+  Image:
+    url: string
+    slug: string unique
+    imageable: morphs
+
+  Comment:
+    user_id: id
+    body: string
+    commentable: morphs
+
+  Phone:
+    user_id: id
+    number: string
+
+  Gender:
+    user_id: id
+    name: string
+
+controllers:
+  # ...

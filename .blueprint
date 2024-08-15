@@ -1,0 +1,55 @@
+created:
+    - database/factories/ArticleFactory.php
+    - database/factories/PostFactory.php
+    - database/factories/VideoFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/ProfileFactory.php
+    - database/factories/LocationFactory.php
+    - database/factories/CountryFactory.php
+    - database/factories/StateFactory.php
+    - database/factories/CityFactory.php
+    - database/factories/ImageFactory.php
+    - database/factories/CommentFactory.php
+    - database/factories/PhoneFactory.php
+    - database/factories/GenderFactory.php
+    - database/migrations/2024_03_22_145132_create_articles_table.php
+    - database/migrations/2024_03_22_145133_create_posts_table.php
+    - database/migrations/2024_03_22_145134_create_videos_table.php
+    - database/migrations/2024_03_22_145135_create_categories_table.php
+    - database/migrations/2024_03_22_145136_create_profiles_table.php
+    - database/migrations/2024_03_22_145137_create_locations_table.php
+    - database/migrations/2024_03_22_145138_create_countries_table.php
+    - database/migrations/2024_03_22_145139_create_states_table.php
+    - database/migrations/2024_03_22_145140_create_cities_table.php
+    - database/migrations/2024_03_22_145141_create_images_table.php
+    - database/migrations/2024_03_22_145142_create_comments_table.php
+    - database/migrations/2024_03_22_145143_create_phones_table.php
+    - database/migrations/2024_03_22_145144_create_genders_table.php
+    - app/Models/Article.php
+    - app/Models/Post.php
+    - app/Models/Video.php
+    - app/Models/Category.php
+    - app/Models/Profile.php
+    - app/Models/Location.php
+    - app/Models/Country.php
+    - app/Models/State.php
+    - app/Models/City.php
+    - app/Models/Image.php
+    - app/Models/Comment.php
+    - app/Models/Phone.php
+    - app/Models/Gender.php
+models:
+    User: {  }
+    Article: { title: string, slug: 'string unique', content: longtext, category_id: id, user_id: id }
+    Post: { title: string, message: string, slug: 'string unique', user_id: id, category_id: id }
+    Video: { title: string, description: string, slug: 'string unique', user_id: id, category_id: id }
+    Category: { name: string, slug: 'string unique', relationships: { hasMany: Post, HasMany: Video } }
+    Profile: { instagram: string, github: string, web: string, slug: 'string unique', hobbies: String, description: String, user_id: id, relationships: { hasOne: Location } }
+    Location: { address: string, coordinates: string, profile_id: id, relationships: { belongsTo: Profile } }
+    Country: { name: string, slug: 'string unique', relationships: { hasMany: State } }
+    State: { name: string, slug: 'string unique', country_id: id, relationships: { belongsTo: Country, hasMany: City } }
+    City: { name: string, slug: 'string unique', state_id: id, relationships: { belongsTo: State, hasMany: User } }
+    Image: { url: string, slug: 'string unique', imageable: morphs }
+    Comment: { user_id: id, body: string, commentable: morphs }
+    Phone: { user_id: id, number: string }
+    Gender: { user_id: id, name: string }
